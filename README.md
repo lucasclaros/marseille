@@ -47,7 +47,7 @@ O objetivo principal da aplicação é fornecer uma maneira prática e visual de
 ### Requisitos
 
 - Python 3.7+
-- Dependências do projeto: `grpcio`, `plotly`, `streamlit`, `pandas`
+- Dependências do projeto: `grpcio`, `plotly`, `streamlit`, `grpcio-tools`
 
 ### Instalação
 
@@ -55,4 +55,4 @@ O objetivo principal da aplicação é fornecer uma maneira prática e visual de
 
    ```bash
    git clone https://github.com/lucasclaros/marseille.git
-   cd dashboard-sensores
+   cd marseille
