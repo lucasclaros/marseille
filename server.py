@@ -1,23 +1,19 @@
 import grpc
 import time
-import random
 from concurrent import futures
 import sensor_pb2
 import sensor_pb2_grpc
 
-# Classe que implementa o serviço gRPC
 class SensorService(sensor_pb2_grpc.SensorServiceServicer):
 
     def StreamSensorData(self, request_iterator, context):
         for request in request_iterator:
-            # Geração de dados aleatórios para os sensores
             temperature = request.temperature
             humidity = request.humidity
             luminosity = request.luminosity           
 
 
             status = "OK" if temperature < 35 else "Alerta: Temperatura média acima de 35 graus!"
-            # Criando a resposta com os dados gerados
             sensor_data = sensor_pb2.DashboardUpdate(
                 sensor_id=request.sensor_id,
                 avg_temperature=round(temperature, 2),
@@ -26,17 +22,16 @@ class SensorService(sensor_pb2_grpc.SensorServiceServicer):
                 status=status
             )
 
-            # Envia a resposta ao cliente
             yield sensor_data
-            time.sleep(0.5)  # Simula um intervalo entre as leituras
+            time.sleep(1.0)
 
-# Função para iniciar o servidor gRPC
 def serve():
+    port = 50051
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     sensor_pb2_grpc.add_SensorServiceServicer_to_server(SensorService(), server)
-    server.add_insecure_port('[::]:50051')
+    server.add_insecure_port('[::]:{}'.format(port))
     server.start()
-    print("Servidor gRPC iniciado na porta 50051...")
+    print("Servidor gRPC iniciado na porta {}...".format(port))
     server.wait_for_termination()
 
 if __name__ == "__main__":

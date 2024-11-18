@@ -1,4 +1,3 @@
-# TemperatureHumidity.py
 import streamlit as st
 import plotly.graph_objs as go
 
@@ -10,16 +9,15 @@ def create_temperature_humidity_chart(temperatures, humidities):
         y=temperatures,
         mode='lines',
         name='Temperatura (°C)',
-        line=dict(color='#FF6347', width=3)  # Cor laranja suave
+        line=dict(color='#FF6347', width=3)
     ))
 
-    # Adiciona o gráfico de umidade com cor azul
     fig.add_trace(go.Scatter(
         x=list(range(len(humidities))),
         y=humidities,
         mode='lines',
         name='Umidade (%)',
-        line=dict(color='#1E90FF', width=3)  # Cor azul
+        line=dict(color='#1E90FF', width=3)
     ))
 
     fig.update_layout(
@@ -28,8 +26,8 @@ def create_temperature_humidity_chart(temperatures, humidities):
         title_pad=dict(t=50),
         xaxis_title='Leituras',
         yaxis_title='Valor',
-        dragmode=False,  # Desabilita o arrasto (pan)
-        hovermode=False,  # Desabilita o hover
+        dragmode=False,
+        hovermode=False,
         xaxis=dict(showgrid=True),
         yaxis=dict(showgrid=True),
         autosize=True,
