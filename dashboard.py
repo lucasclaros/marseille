@@ -22,9 +22,9 @@ def generate_sensor_data():
         # Sensor 2 (Luminosidade)
         yield sensor_pb2.SensorData(
             sensor_id="sensor-02",
-            temperature=np.random.poisson(lam=25),  # Temperatura entre 20 e 40 graus
-            humidity=np.random.poisson(lam=50),      # Umidade entre 30% e 70%
-            luminosity=np.random.poisson(lam=50)   # Luminosidade entre 0 e 100 lux
+            temperature=random.uniform(20, 40),  # Temperatura entre 20 e 40 graus
+            humidity=random.uniform(30, 70),      # Umidade entre 30% e 70%
+            luminosity=random.uniform(0, 100)   # Luminosidade entre 0 e 100 lux
         )
 
 # Função para calcular a média de uma lista de valores
