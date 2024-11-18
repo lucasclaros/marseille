@@ -11,9 +11,9 @@ class SensorService(sensor_pb2_grpc.SensorServiceServicer):
     def StreamSensorData(self, request_iterator, context):
         for request in request_iterator:
             # Geração de dados aleatórios para os sensores
-            temperature = random.uniform(20, 40)  # Temperatura entre 20 e 40 graus
-            humidity = random.uniform(30, 70)      # Umidade entre 30% e 70%
-            luminosity = random.uniform(0, 100)    # Luminosidade entre 0% e 100%
+            temperature = request.temperature
+            humidity = request.humidity
+            luminosity = request.luminosity           
 
 
             status = "OK" if temperature < 35 else "Alerta: Temperatura média acima de 35 graus!"
