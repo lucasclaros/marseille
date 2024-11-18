@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+service SensorService {
+    rpc StreamSensorData (stream SensorData) returns (stream DashboardUpdate);
+}
+
+message SensorData {
+    string sensor_id = 1;
+    double temperature = 2;
+    double humidity = 3;
+    double luminosity = 4;  // Novo campo para luminosidade
+}
+
+message DashboardUpdate {
+    string sensor_id = 1;
+    double avg_temperature = 2;
+    double avg_humidity = 3;
+    double avg_luminosity = 4;  // Novo campo para luminosidade média
+    string status = 5;
+}
